@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AlgoLearn — Belajar Algoritma & Pemrograman Interaktif</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo"><span class="logo-icon">&lt;/&gt;</span> AlgoLearn</a>
+      <nav class="nav-links">
+        <a href="#sorting">Sorting</a>
+        <a href="#searching">Searching</a>
+        <a href="#playground">Playground</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Belajar <span class="gradient-text">Algoritma</span><br />Secara Visual & Interaktif</h1>
+      <p>Pahami cara kerja algoritma sorting, searching, dan logika pemrograman melalui visualisasi langsung dan playground kode.</p>
+      <div class="hero-buttons">
+        <a href="#sorting" class="btn btn-primary">Mulai Belajar</a>
+        <a href="#playground" class="btn btn-secondary">Coba Playground</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card" style="--delay:0s">O(n log n)</div>
+      <div class="floating-card" style="--delay:1s">Bubble Sort</div>
+      <div class="floating-card" style="--delay:2s">Binary Search</div>
+      <div class="floating-card" style="--delay:3s">{ code }</div>
+    </div>
+  </section>
+
+  <!-- ===== SORTING VISUALIZER ===== -->
+  <section id="sorting" class="section">
+    <div class="container">
+      <h2 class="section-title">🔀 Sorting Visualizer</h2>
+      <p class="section-subtitle">Lihat bagaimana algoritma pengurutan bekerja langkah demi langkah</p>
+
+      <div class="visualizer-card">
+        <div class="controls">
+          <button class="btn btn-primary" onclick="startSort('bubble')">Bubble Sort</button>
+          <button class="btn btn-primary" onclick="startSort('selection')">Selection Sort</button>
+          <button class="btn btn-primary" onclick="startSort('insertion')">Insertion Sort</button>
+          <button class="btn btn-primary" onclick="startSort('quick')">Quick Sort</button>
+          <button class="btn btn-secondary" onclick="generateBars()">🔄 Acak Ulang</button>
+          <div class="slider-control">
+            <label for="speedRange">Kecepatan</label>
+            <input type="range" id="speedRange" min="10" max="300" value="100" oninput="updateSpeed()" />
+          </div>
+        </div>
+        <div id="sortBars" class="bars-container"></div>
+        <div class="legend">
+          <span><span class="dot compare-dot"></span> Dibandingkan</span>
+          <span><span class="dot swap-dot"></span> Ditukar</span>
+          <span><span class="dot sorted-dot"></span> Terurut</span>
+          <span><span class="dot pivot-dot"></span> Pivot</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SEARCHING VISUALIZER ===== -->
+  <section id="searching" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title">🔍 Searching Visualizer</h2>
+      <p class="section-subtitle">Bandingkan Linear Search vs Binary Search secara visual</p>
+
+      <div class="visualizer-card">
+        <div class="controls">
+          <input type="number" id="searchTarget" placeholder="Cari angka..." class="search-input" />
+          <button class="btn btn-primary" onclick="runSearch('linear')">Linear Search</button>
+          <button class="btn btn-primary" onclick="runSearch('binary')">Binary Search</button>
+          <button class="btn btn-secondary" onclick="generateSearchArray()">🔄 Array Baru</button>
+        </div>
+        <div id="searchArray" class="search-array"></div>
+        <div class="legend">
+          <span><span class="dot active-dot"></span> Sedang Dicek</span>
+          <span><span class="dot visited-dot"></span> Sudah Dilewati</span>
+          <span><span class="dot found-dot"></span> Ditemukan</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLAYGROUND ===== -->
+  <section id="playground" class="section">
+    <div class="container">
+      <h2 class="section-title">💻 Playground JavaScript</h2>
+      <p class="section-subtitle">Tulis dan jalankan kode JavaScript langsung di browser</p>
+
+      <div class="playground-card">
+        <div class="pg-header">
+          <span class="pg-dot" style="background:#ef4444"></span>
+          <span class="pg-dot" style="background:#fbbf24"></span>
+          <span class="pg-dot" style="background:#10b981"></span>
+          <span class="pg-title">main.js</span>
+        </div>
+        <div class="pg-body">
+          <textarea id="codeInput" class="code-editor" spellcheck="false">// Contoh: cek bilangan prima
+function isPrima(n) {
+  if (n < 2) return false;
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) return false;
+  }
+  return true;
+}
+
+for (let i = 1; i <= 20; i++) {
+  if (isPrima(i)) console.log(i + " adalah bilangan prima");
+}
+</textarea>
+          <div class="pg-output-wrapper">
+            <div class="output-header">Output</div>
+            <div id="output" class="output-area"></div>
+          </div>
+        </div>
+        <div class="pg-footer">
+          <button class="btn btn-primary" onclick="runCode()">▶ Jalankan Kode</button>
+          <button class="btn btn-secondary" onclick="clearOutput()">🗑 Bersihkan</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== QUIZ ===== -->
+  <section id="quiz" class="section alt-bg">
+    <div class="container">
+      <h2 class="section-title">🧠 Quiz Algoritma</h2>
+      <p class="section-subtitle">Uji pemahamanmu tentang algoritma dan struktur data</p>
+
+      <div id="quizContainer" class="quiz-container"></div>
+      <div id="quizResult" class="quiz-result hidden"></div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>© 2025 AlgoLearn — Dibuat untuk pembelajaran algoritma & pemrograman interaktif.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
